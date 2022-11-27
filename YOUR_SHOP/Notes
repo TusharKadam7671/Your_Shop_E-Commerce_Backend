@@ -1,0 +1,17 @@
+{
+  "address": {
+    "addressId": 0,
+    "buildingName": "building1",
+    "city": "pune",
+    "country": "india",
+    "pincode": "415407",
+    "state": "mh",
+    "streetName": "street1"
+  },
+  "customerId": 0,
+  "email": "kadamtushar080@gmail.com",
+  "firstName": "tushar",
+  "lastName": "kadam",
+  "mobileNumber": "7219497671",
+  "password": "password7671"
+}

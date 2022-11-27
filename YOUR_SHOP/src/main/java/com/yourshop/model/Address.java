@@ -8,6 +8,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,28 +27,29 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer addressId;
 	
-	@NonNull
+	
 	@NotBlank(message = "Building name is mandatory")
 	private String buildingName;
 	
-	@NonNull
+	
 	@NotBlank(message = "Street name is mandatory")
 	private String StreetName;
 	
-	@NonNull
+	
 	@NotBlank(message = "City name is mandatory")
 	private String city;
 	
-	@NonNull
+	
 	@NotBlank(message = "State name is mandatory")
 	private String state;
 	
-	@NonNull
+
 	@NotBlank(message = "Country name is mandatory")
 	private String country;
 	
 	@Size(min = 6, max = 6, message = "pincode must be 6 digit ")
 	private String pincode;
+	
 	
 	@OneToOne
 	private Customer customer;
