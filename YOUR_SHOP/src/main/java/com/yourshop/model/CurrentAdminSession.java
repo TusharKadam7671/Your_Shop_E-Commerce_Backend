@@ -2,6 +2,7 @@ package com.yourshop.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,7 @@ import lombok.ToString;
 public class CurrentAdminSession {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(unique = true)
 	private Integer currentAdminId;
 	
 	private String uuid;

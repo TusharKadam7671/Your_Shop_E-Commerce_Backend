@@ -52,7 +52,7 @@ public class Customer {
 	private Address address;
 	
 	@JsonIgnore
-	@OneToOne
+	@OneToOne(mappedBy="customer", cascade = CascadeType.ALL)
 	private Cart cart;
 	
 //	@OneToMany

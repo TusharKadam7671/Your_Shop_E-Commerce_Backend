@@ -32,7 +32,7 @@ public class Category {
 
 //	@OneToMany
 	@JsonIgnore
-	@OneToMany(mappedBy="category",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="category", cascade = CascadeType.ALL)
 	private List<Product> product;
 
 }

@@ -15,3 +15,17 @@
   "mobileNumber": "7219497671",
   "password": "password7671"
 }
+
+-----------------------------------------
+
+{
+  "color": "red",
+  "dimension": "80 x 170 mm",
+  "manufacturer": "motorola",
+  "price": 12000,
+  "productId": 1,
+  "productName": "moto e4 plus",
+  "quantity": 45
+}
+
+---------------------------------------------

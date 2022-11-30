@@ -137,8 +137,10 @@ public class ProductServiceImpl implements ProductService{
 		
 		if(pOpt.isPresent())
 		{
-			pRepo.delete(pOpt.get());
-			return pOpt.get();
+			Product product = pOpt.get();
+			product.setCategory(null);
+			pRepo.delete(product);
+			return product;
 		}
 		else
 		{
