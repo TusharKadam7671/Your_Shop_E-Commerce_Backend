@@ -12,46 +12,42 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 import lombok.ToString;
 
 @Entity
 @Data
+@Setter
+@Getter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
+@AllArgsConstructor
+
 public class Address {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer addressId;
+	private int addressId;
 	
-	
-	@NotBlank(message = "Building name is mandatory")
+	@Size(min = 3, max = 10, message = "Street no. should min of 3 and max of 10 Characters")
+	private String streetNo;
 	private String buildingName;
 	
-	
-	@NotBlank(message = "Street name is mandatory")
-	private String StreetName;
-	
-	
-	@NotBlank(message = "City name is mandatory")
+	@NotBlank(message = "City should not be blank.")
 	private String city;
 	
-	
-	@NotBlank(message = "State name is mandatory")
+	@NotBlank(message = "State cannot be blank.")
 	private String state;
 	
-
-	@NotBlank(message = "Country name is mandatory")
+	@NotBlank(message = "Country cannot be blank.")
 	private String country;
 	
-	@Size(min = 6, max = 6, message = "pincode must be 6 digit ")
+	@NotBlank(message = "Pincode cannot be blank.")
 	private String pincode;
 	
 	
-	@OneToOne
-	private Customer customer;
-
+		
 }
