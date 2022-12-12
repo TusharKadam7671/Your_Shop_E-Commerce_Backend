@@ -1,5 +1,8 @@
 package com.yourshop.controller;
 
+import java.util.List;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yourshop.dto.ProductDto;
 import com.yourshop.exception.CartException;
 import com.yourshop.exception.LoginException;
 import com.yourshop.exception.ProductException;
@@ -25,58 +29,55 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 	
+	@Autowired
+	private CartService ctService;
+	
+	
 	@PostMapping("/add")
 	public ResponseEntity<Cart> addToCartHandler(@RequestParam Integer productId,
 			@RequestParam Integer quantity,
 			@RequestParam String key) throws CartException, LoginException, ProductException
 	{
-		Cart added = cartService.addProductToCart(productId, quantity, key);
+		Cart added = ctService.addProductToCart(productId, quantity, key);
 		
 		return new ResponseEntity<Cart>(added, HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/removeone")
-	public ResponseEntity<Cart> removeProductFromCartHandler(@RequestParam Integer productId, @RequestParam String key) throws CartException, ProductException, LoginException
+	@GetMapping("/products")
+	public ResponseEntity<List<ProductDto>> viewAllProductsHandler(@RequestParam String key) throws CartException, LoginException
 	{
-		Cart removed = cartService.removeProductFromCart(productId, key);
+		List<ProductDto> list = ctService.viewAllProducts(key);
 		
-		return new ResponseEntity<Cart>(removed, HttpStatus.CREATED);
+		return new ResponseEntity<List<ProductDto>>(list, HttpStatus.OK);
 	}
-
-	@PutMapping("/add")
-	public ResponseEntity<Cart> increaseQuantHandler(@RequestParam Integer productId,
+	
+	@PutMapping("/products")
+	public ResponseEntity<List<ProductDto>> updateProductQuantityHandler(
+			@RequestParam Integer productId,
 			@RequestParam Integer quantity,
-			@RequestParam String key ) throws CartException, LoginException, ProductException
+			@RequestParam String key) throws CartException, LoginException, ProductException
 	{
-		Cart increase = cartService.increaseProductQuantity(productId, quantity, key);
+		List<ProductDto> list = ctService.updateProductQuantity(productId, quantity, key);
 		
-		return new ResponseEntity<Cart>(increase, HttpStatus.ACCEPTED);
+		return new ResponseEntity<List<ProductDto>>(list, HttpStatus.CREATED);
 	}
 	
-	
-	@PutMapping("/remove")
-	public ResponseEntity<Cart> decreaseQuantHandler(@RequestParam Integer productId,
-			@RequestParam Integer quantity,
-			@RequestParam String key ) throws CartException, LoginException, ProductException
+	@DeleteMapping("/products/remove")
+	public ResponseEntity<List<ProductDto>> removeProductFromCartHandler(
+			@RequestParam Integer productId,
+			@RequestParam String key) throws CartException, ProductException, LoginException
 	{
-		Cart decrease = cartService.decreaseProductQuantity(productId, quantity, key);
+		List<ProductDto> list = ctService.removeProductFromCart(productId, key);
 		
-		return new ResponseEntity<Cart>(decrease, HttpStatus.CREATED);
+		return new ResponseEntity<List<ProductDto>>(list, HttpStatus.OK);
 	}
 	
-	@GetMapping("/all")
-	public ResponseEntity<Cart> viewAllFromCartHandler(@RequestParam String key) throws CartException, LoginException
-	{
-		Cart cart = cartService.viewAllProducts(key);
-		
-		return new ResponseEntity<Cart>(cart, HttpStatus.OK);
-	}
-	
-	@DeleteMapping("/removeall")
+	@DeleteMapping("/products")
 	public ResponseEntity<Cart> removeAllProductsHandler(@RequestParam String key) throws CartException, LoginException
 	{
-		Cart cart = cartService.removeAllProducts(key);
+		Cart cart = ctService.removeAllProducts(key);
 		
 		return new ResponseEntity<Cart>(cart, HttpStatus.OK);
 	}
+	
 }
