@@ -18,11 +18,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDTO {
+public class ProductDto {
 	
 	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
-//	private Integer Id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer Id;
 
 	private Integer productId;
 	
@@ -37,10 +37,43 @@ public class ProductDTO {
 	
 	private String manufacturer;
 	
+	private String specification;
 	
 	private Integer quantity;
 
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Category category;
+
+
+	public ProductDto(Integer productId, String productName, Double price, String color, String dimension,
+			String manufacturer, String specification, Integer quantity) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.price = price;
+		this.color = color;
+		this.dimension = dimension;
+		this.manufacturer = manufacturer;
+		this.specification = specification;
+		this.quantity = quantity;
+	}
+
+	
+	
+
+
+//	public ProductDto(Integer productId, String productName, Double price, String color, String dimension,
+//			String manufacturer, Integer quantity) {
+//		super();
+//		this.productId = productId;
+//		this.productName = productName;
+//		this.price = price;
+//		this.color = color;
+//		this.dimension = dimension;
+//		this.manufacturer = manufacturer;
+//		this.quantity = quantity;
+//	}
+
+
+
+	
+
 }

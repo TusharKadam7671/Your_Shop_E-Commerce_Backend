@@ -1,9 +1,12 @@
 package com.yourshop.service;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.yourshop.exception.CategoryException;
@@ -12,7 +15,7 @@ import com.yourshop.model.Category;
 import com.yourshop.model.CurrentAdminSession;
 import com.yourshop.model.Product;
 import com.yourshop.repository.AdminSessionRepo;
-import com.yourshop.repository.CategoryRepo;
+//import com.yourshop.repository.CategoryRepo;
 import com.yourshop.repository.ProductRepo;
 
 
@@ -21,132 +24,78 @@ public class ProductServiceImpl implements ProductService{
 	
 	
 	@Autowired
-	private ProductRepo pRepo;
+	private ProductRepo pr;
 	
-	@Autowired
-	private CategoryRepo catRepo;
+//	@Autowired
+//	private CategoryRepo catRepo;
 	
 	@Autowired
 	private AdminSessionRepo adRepo;
 
+
 	@Override
-	public Product addProduct(Product product, int categoryId) throws ProductException, CategoryException {
-
-
-		Optional<Category> catOpt = catRepo.findById(categoryId);
+	public List<Product> viewAllProducts() {
+		List<Product> list=pr.findAll();
+		if(list.size()==0) {
+//		throw ExceptionInInitializerError;
+		}
 		
-		if(catOpt.isPresent())
+		// TODO Auto-generated method stub
+		return list;
+	}
+
+	@Override
+	public ResponseEntity<List<Product>> viewAllProduct() {
+		// TODO Auto-generated method stub
+		
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	public Product addProduct(Product product) {
+		// TODO Auto-generated method stub
+	Product	pr2 =pr.save(product);
+		return pr2;
+	}
+
+	public Product removeProduct(int productId) throws ProductException {
+		// TODO Auto-generated method stub
+		Optional<Product> productOpt = pr.findById(productId);
+		if(productOpt.isPresent())
 		{
-			Category category = catOpt.get();
-			
-			category.getProduct().add(product);
-			
-			product.setCategory(category);
-			
-			catRepo.save(category);
-			
+			Product product = productOpt.get();
+			pr.deleteById(productId);
 			return product;
 		}
 		else
 		{
-			throw new CategoryException("Category not found with given id");
+			throw new ProductException("Product is not available with product id: "+productId);
 		}
+		
+		
+		
 	}
+
+	public Product viewProduct(int productId) {
+		// TODO Auto-generated method stub
+	Optional<Product> pr3 = 	pr.findById(productId);
+		return pr3.get();
+	}
+
 
 	@Override
 	public Product updateProduct(Product product) throws ProductException {
-			
-		Optional<Product> pOpt = pRepo.findById(product.getProductId());
 		
-		if(pOpt.isPresent())
-		{
-			Product oldProduct = pOpt.get();
-			
-			oldProduct.setPrice(product.getPrice());
-			oldProduct.setProductName(product.getProductName());
-			oldProduct.setQuantity(product.getQuantity());
-			
-			
-			return pRepo.save(oldProduct);
-		}
-		else
-		{
-			throw new ProductException("Product is not found with given id");
-		}
-	}
-
-	@Override
-	public Product viewProduct(int productId) throws ProductException {
-		// TODO Auto-generated method stub
-		Optional<Product> productOpt = pRepo.findById(productId);
 		
-		if(productOpt.isPresent())
-		{
-			return productOpt.get();
+		Optional<Product> opt= pr.findById(product.getProductId());
+		if(opt.isPresent()) {
+			Product updated = pr.save(product);
+			return updated;
 		}
-		else
-		{
-			throw new ProductException("Product is not found with given product id");
-		}
-	}
-
-	@Override
-	public List<Product> productByName(String name) throws ProductException {
-
-
-		List<Product> products = pRepo.findByProductName(name);
-		
-		if(products.size() != 0)
-		{
-			return products;
-		}
-		else
-		{
-			throw new ProductException("Product is not found with given name");
-		}
-	}
-
-	@Override
-	public List<Product> viewAllProducts() throws ProductException {
-		// TODO Auto-generated method stub
-
-		List<Product> products = pRepo.findAll();
-		
-		if(products.size() != 0)
-		{
-			return products;
-		}
-		else
-		{
-			throw new ProductException("Product list is empty");
-		}
-	}
-
-	@Override
-	public Product removeProduct(int productId, String key) throws ProductException {
-		// TODO Auto-generated method stub
-		
-		CurrentAdminSession session = adRepo.findByUuid(key);
-		
-		if(session == null )
-		{
-			throw new ProductException("Please login as admin");
-		}
-		
-		Optional<Product> pOpt = pRepo.findById(productId);
-		
-		if(pOpt.isPresent())
-		{
-			Product product = pOpt.get();
-			product.setCategory(null);
-			pRepo.delete(product);
-			return product;
-		}
-		else
-		{
-			throw new ProductException("Product not found with given id");
-		}
+		else 
+			throw new ProductException("Invalid Product Details Please Check");
 		
 	}
+
 
 }

@@ -24,51 +24,46 @@ import com.yourshop.service.ProductService;
 public class ProductController {
 	
 	@Autowired
-	private ProductService pService;
-	
-	@PostMapping("/add/{categoryId}")
-	public ResponseEntity<Product> addProduct(@RequestBody Product product, @PathVariable("categoryId") int categoryId) throws ProductException, CategoryException 
-	{
-		Product addedProduct = pService.addProduct(product, categoryId);
-		return new ResponseEntity<Product>(addedProduct,HttpStatus.CREATED);
-	}
-	
-	@PutMapping("/update")
-	public ResponseEntity<Product> updateProduct(@RequestBody Product product) throws ProductException 
-	{
-		Product updated = pService.updateProduct(product);
-		return new ResponseEntity<Product>(updated,HttpStatus.ACCEPTED);
-	}
-	
-	@GetMapping("/view/{productId}")
-	public ResponseEntity<Product> viewProduct(@PathVariable("productId") int productId) throws ProductException 
-	{
-		Product product = pService.viewProduct(productId);
-		return new ResponseEntity<Product>(product,HttpStatus.OK);
-	}
-	
-	@GetMapping("/productByName/{name}")
-	public ResponseEntity<List<Product>> productByName(@PathVariable("name") String name) throws ProductException 
-	{
-		List<Product> products = pService.productByName(name);
-		return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
-	}
-	
-	@GetMapping("/viewAllProduct")
-	public ResponseEntity<List<Product>> allProduct() throws ProductException 
-	{
-		List<Product> products = pService.viewAllProducts();
-		return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
-	}
-	
-	@DeleteMapping("/delete/{productId}/{key}")
-	public ResponseEntity<Product> removeProduct(@PathVariable("productId") int productId, @PathVariable("key") String key) throws ProductException 
-	{
-		Product deleted = pService.removeProduct(productId, key);
-		return new ResponseEntity<Product>(deleted,HttpStatus.ACCEPTED);
-	}
+	private ProductService productService;
 	
 	
+
+		
+		@GetMapping("/viewallproduct")
+		public List<Product> getAllProduct(){
+			return productService.viewAllProducts();
+		}
+
+
+	    @PostMapping("/addproduct")
+	    public ResponseEntity<Product> addProduct(@RequestBody Product product){
+	        Product product2 = productService.addProduct(product);
+	        return new ResponseEntity<Product>(product2, HttpStatus.OK); 
+	        		}
+
+	    @DeleteMapping("/deleteproduct/{productId}")
+	    public ResponseEntity<Product> removeProduct(@PathVariable int productId) throws ProductException {
+	        Product product = productService.removeProduct(productId);
+	        return new ResponseEntity<Product>(product,HttpStatus.OK);
+	    }
+
+	    @GetMapping("/viewproductbyid/{productId}")
+	    public Product viewProduct(@PathVariable int productId) throws ProductException {
+	        return productService.viewProduct(productId);
+	    }
+
+	    
+		@PutMapping ("/product")
+		public ResponseEntity<Product> updateProductHandler(@RequestBody Product product) throws ProductException{
+			
+			Product update= productService.updateProduct(product);
+			
+			return new ResponseEntity<Product>(update,HttpStatus.ACCEPTED);
+			
+			
+		}
+
+
 	
 	
 
