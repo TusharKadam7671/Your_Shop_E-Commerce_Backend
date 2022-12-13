@@ -61,8 +61,8 @@ public class AddressController {
 	
 	
 	
-	@DeleteMapping("/address/{Id}")
-	public ResponseEntity<Address> deleteAddressByIdHandler(@PathVariable("Id")Integer addressId) throws AddressException{
+	@DeleteMapping("/address/{addressId}")
+	public ResponseEntity<Address> deleteAddressByIdHandler(@PathVariable("addressId")Integer addressId) throws AddressException{
 		
 		Address delAddress=aService.deleteAddressId(addressId);
 		

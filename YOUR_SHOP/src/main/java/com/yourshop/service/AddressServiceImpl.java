@@ -92,7 +92,8 @@ public class AddressServiceImpl implements AddressService{
 		if(opt.isPresent()) {
 			
 			Address existingAddress= opt.get();
-			aDao.delete(existingAddress);
+//			aDao.delete(existingAddress);
+			aDao.deleteById(addressId);;
 			
 			return existingAddress;
 			
