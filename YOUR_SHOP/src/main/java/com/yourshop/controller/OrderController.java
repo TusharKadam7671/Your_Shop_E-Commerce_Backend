@@ -64,14 +64,14 @@ public class OrderController {
 		
 	}
 	
-	@GetMapping("/allOrders/{date}")
+	@GetMapping("/allOrders/data/{date}")
 	public ResponseEntity<List<Orders>> getAllOrderHandler(@PathVariable("date") LocalDate date) throws OrderException{
 		List<Orders> ordersList= oService.viewAllOrders(date);
 		return new ResponseEntity<List<Orders>>(ordersList, HttpStatus.OK);
 		
 	}
 	
-	@GetMapping("/allOrders/{city}")
+	@GetMapping("/allOrders/city/{city}")
 	public ResponseEntity<List<Orders>> getAllOrderByCityHandler(@PathVariable("city") String city) throws OrderException, AddressException{
 		List<Orders> ordersList2= oService.viewAllOrdersByLocation(city);
 		return new ResponseEntity<List<Orders>>(ordersList2, HttpStatus.OK);

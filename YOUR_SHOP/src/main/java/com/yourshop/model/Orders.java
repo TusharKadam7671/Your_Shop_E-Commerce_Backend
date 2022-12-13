@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.yourshop.dto.AddressDto;
 import com.yourshop.dto.ProductDto;
 
@@ -43,14 +44,17 @@ public class Orders {
 	
 	private Double total;
 	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinTable(name = "customer_order",joinColumns = @JoinColumn(name="order_id", referencedColumnName = "orderId"))
 	private Customer customer;
 	
+	@JsonIgnore
 	@ElementCollection
 	@CollectionTable(name="product_order", joinColumns = @JoinColumn(name="order_id", referencedColumnName = "orderId"))
 	private List<ProductDto> pList = new ArrayList<>();
 	
+	@JsonIgnore
 	@Embedded
 	private AddressDto orderAddress;
 	 	

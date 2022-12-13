@@ -5,6 +5,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+
 public class AddressDto {
 	
 	@Size(min = 3, max = 10, message = "Street no. should min of 3 and max of 10 Characters")
