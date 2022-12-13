@@ -50,9 +50,9 @@ public class AddressController {
 	
 	
 	@PutMapping("/address")
-	public ResponseEntity<Address> updateAddressHandler(@RequestBody Address address) throws AddressException{
+	public ResponseEntity<Address> updateAddressHandler(@RequestBody Address address,@RequestParam String loginkey) throws AddressException, LoginException{
 		
-		Address updateAddress=aService.updateAddress(address);
+		Address updateAddress=aService.updateAddress(address,loginkey);
 		
 		return new ResponseEntity<Address>(updateAddress,HttpStatus.ACCEPTED);
 		
