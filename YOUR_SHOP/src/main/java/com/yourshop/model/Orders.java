@@ -32,6 +32,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Orders {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer orderId;
@@ -40,25 +41,27 @@ public class Orders {
 	
 	private String orderStatus;
 	
+	private Double total;
+	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinTable(name = "customer_order",joinColumns = @JoinColumn(name="order_id",referencedColumnName = "orderId"))
+	@JoinTable(name = "customer_order",joinColumns = @JoinColumn(name="order_id", referencedColumnName = "orderId"))
 	private Customer customer;
+	
+	@ElementCollection
+	@CollectionTable(name="product_order", joinColumns = @JoinColumn(name="order_id", referencedColumnName = "orderId"))
+	private List<ProductDto> pList = new ArrayList<>();
 	
 	@Embedded
 	private AddressDto orderAddress;
-	
-	@ElementCollection
-	@CollectionTable(name = "order_productlist", joinColumns = @JoinColumn(name="order_id",referencedColumnName = "orderId"))
-	private List<ProductDto> productList = new ArrayList<>();
-
-	public Orders(LocalDate orderDate, String orderStatus, Customer customer, AddressDto orderAddress,
-			List<ProductDto> productList) {
+	 	
+	public Orders(LocalDate orderDate, String orderStatus, Customer customer, List<ProductDto> pList,
+			AddressDto orderAddress) {
 		super();
 		this.orderDate = orderDate;
 		this.orderStatus = orderStatus;
 		this.customer = customer;
+		this.pList = pList;
 		this.orderAddress = orderAddress;
-		this.productList = productList;
 	}
 	
 	
