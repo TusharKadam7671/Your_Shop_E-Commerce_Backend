@@ -48,6 +48,9 @@ public class Address {
 	@NotBlank(message = "Pincode cannot be blank.")
 	private String pincode;
 	
+	@JsonIgnore
+	@OneToOne(mappedBy = "address")
+	private Customer customer;
 	
 		
 }
