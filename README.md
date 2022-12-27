@@ -1,7 +1,7 @@
 # Your_Shop_E-Commerce_Backend
 
 ---
-
+---
 # Customer-Module
 
 ## POST ​/customer registerCustomer
@@ -68,3 +68,20 @@
   "password": "password1111"
 }
 ```
+---
+## DELETE ​/customer​/{customerId} deleteCustomerByIdHandler
+- Request URL - http://localhost:8888/customer/1
+- Response body
+
+
+```
+{
+  "customerId": 1,
+  "firstName": "newCustomer1",
+  "lastName": "lastname1",
+  "mobileNumber": "7219497671",
+  "email": "customer1@gmail.com",
+  "password": "password1111"
+}
+```
+---
