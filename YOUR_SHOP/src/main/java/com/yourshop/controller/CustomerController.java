@@ -33,7 +33,7 @@ public class CustomerController {
 	
 	
 	
-	
+	//register customer
 	@PostMapping("/customer")
 	public ResponseEntity<Customer> registerCustomer(@Valid @RequestBody Customer customer)throws CustomerException {
 		
@@ -43,6 +43,8 @@ public class CustomerController {
 	}
 		
 	
+	
+	//update customer
 	@PutMapping ("/customer")
 	public ResponseEntity<Customer> updateCustomerHandler(@Valid @RequestBody Customer customer) throws CustomerException{
 		
@@ -53,6 +55,8 @@ public class CustomerController {
 	
 	
 	
+	
+	//delete customer
 	@DeleteMapping("/customer/{customerId}")
 	public ResponseEntity<Customer> deleteCustomerByIdHandler (@PathVariable("customerId")Integer customerId) throws CustomerException{
 		
@@ -62,6 +66,8 @@ public class CustomerController {
 	}
 	
 	
+	
+	//get customer by id
 	@GetMapping("/getcustomer/{customerId}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable("customerId")Integer customerId) throws CustomerException{
 		
@@ -71,16 +77,19 @@ public class CustomerController {
 	}
 	
 	
-	/*//not working -
-	 
+	
+	
+	//not working -
+	//getting customers by location (city name)
+	/*
 	@GetMapping("/getcustomer")
 	public ResponseEntity<List<Customer>> getAllCustomer(@PathVariable("city") String location) throws CustomerException{
 		
 		List<Customer> viewAll= custService.viewAllCustomers(location); 
 		return new ResponseEntity<List<Customer>>(viewAll, HttpStatus.OK);
 	}
-	
-*/
+	*/
+
 
 }
 

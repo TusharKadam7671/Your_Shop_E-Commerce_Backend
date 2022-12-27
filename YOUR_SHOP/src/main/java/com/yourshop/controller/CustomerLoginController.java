@@ -22,23 +22,21 @@ public class CustomerLoginController {
 	@Autowired
 	private CustomerLoginService clService;
 	
+	//customer login
 	@PostMapping("/login")
-	public ResponseEntity<String> logInCustomer(@RequestBody CustomerLoginDTO dto) throws LoginException {
-		
+	public ResponseEntity<String> logInCustomer(@RequestBody CustomerLoginDTO dto) throws LoginException 
+	{
 		String result = clService.logIntoAccount(dto);
 		
-
-		
-		return new ResponseEntity<String>(result,HttpStatus.OK );
-		
-		
+		return new ResponseEntity<String>(result,HttpStatus.OK );	
 	}
 	
+	
+	//customer logout
 	@PostMapping("/logout")
-	public String logoutCustomer(@RequestParam(required = false) String key) throws LoginException {
-		
+	public String logoutCustomer(@RequestParam(required = false) String key) throws LoginException 
+	{
 		return clService.logOutFromAccount(key);
-		
 	}
 
 }

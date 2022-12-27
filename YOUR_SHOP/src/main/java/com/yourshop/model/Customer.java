@@ -2,7 +2,6 @@ package com.yourshop.model;
 
 import java.util.ArrayList;
 
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
