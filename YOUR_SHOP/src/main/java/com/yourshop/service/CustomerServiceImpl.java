@@ -28,6 +28,11 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Override
 	public Customer addCustomer(Customer cust) throws CustomerException {
+		Customer old = custDao.findByMobileNumber(cust.getMobileNumber());
+		if(old != null)
+		{
+			throw new CustomerException("Customer is already registered with this mobile number: "+cust.getMobileNumber());
+		}
 		Customer add= custDao.save(cust);
 		return add;
 	}
