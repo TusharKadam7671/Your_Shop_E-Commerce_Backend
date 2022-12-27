@@ -42,9 +42,9 @@ public class Customer {
 	@Size(min = 10, max = 10, message = "Mobile Number should contain 10 digit only")
 	private String mobileNumber;
 
-//	@JsonIgnore
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinTable(name = "customer_address",joinColumns = @JoinColumn(name="customer_id",referencedColumnName = "customerId"))
+//	@JoinTable(name = "customer_address",joinColumns = @JoinColumn(name="customer_id",referencedColumnName = "customerId"))
 	private Address address;
 	
 	@Email(message = "Please enter valid email address")
