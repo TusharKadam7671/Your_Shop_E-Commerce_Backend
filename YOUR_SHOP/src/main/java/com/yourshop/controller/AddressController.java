@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yourshop.exception.AddressException;
 import com.yourshop.exception.LoginException;
 import com.yourshop.model.Address;
+import com.yourshop.model.Customer;
 import com.yourshop.service.AddressService;
 
 @RestController
@@ -50,11 +51,12 @@ public class AddressController {
 	
 	
 	@PutMapping("/address")
-	public ResponseEntity<Address> updateAddressHandler(@RequestBody Address address,@RequestParam String loginkey) throws AddressException, LoginException{
+	public ResponseEntity<Customer> updateAddressHandler(@RequestBody Address address,@RequestParam String loginkey) throws AddressException, LoginException{
 		
-		Address updateAddress=aService.updateAddress(address,loginkey);
+//		Address updateAddress=aService.updateAddress(address,loginkey);
+		Customer updateAddress=aService.updateAddress(address,loginkey);
 		
-		return new ResponseEntity<Address>(updateAddress,HttpStatus.ACCEPTED);
+		return new ResponseEntity<Customer>(updateAddress,HttpStatus.ACCEPTED);
 		
 	}
 	

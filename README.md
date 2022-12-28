@@ -208,3 +208,121 @@ CurrentAdminSession(currentAdminId=3, uuid=Ed6BPm, localDateTime=2022-12-27T22:2
 Admin logged out
 ```
 ---
+
+# Address module
+
+### GET ​/address getAllAddressHandler
+- Request URL - http://localhost:8888/address
+- Response Body
+```
+[
+  {
+    "addressId": 6,
+    "streetNo": "street4",
+    "buildingName": "Building1",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "401401"
+  }
+]
+```
+---
+
+
+### POST ​/address registerAddress
+ - Request URL - http://localhost:8888/address?loginKey=vWFCRM
+ - Request Body 
+ ```
+ {
+  "addressId": 0,
+  "buildingName": "Building1",
+  "city": "Mumbai",
+  "country": "India",
+  "pincode": "401401",
+  "state": "Maharashtra",
+  "streetNo": "street4"
+}
+ ```
+ - Response Body
+ ```
+ {
+  "addressId": 7,
+  "streetNo": "street4",
+  "buildingName": "Building1",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "country": "India",
+  "pincode": "401401"
+}
+ ```
+ ---
+
+### GET ​/getaddress​/{addressId} getAddressByIdHandler
+- Request URL - http://localhost:8888/getaddress/6
+- Response Body
+```
+{
+  "addressId": 6,
+  "streetNo": "street4",
+  "buildingName": "Building1",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "country": "India",
+  "pincode": "401401"
+}
+```
+ ---
+#### PUT ​/address updateAddressHandler
+- Request URL - http://localhost:8888/address?loginkey=vWFCRM
+- Request Body
+```
+
+{
+    "addressId": 3,
+    "streetNo": "street1",
+    "buildingName": "NewBuiliding1",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "415416"
+}
+```
+- Response Body
+```
+{
+  "customerId": 4,
+  "firstName": "Customer1",
+  "lastName": "Lastname1",
+  "mobileNumber": "7219497671",
+  "address": {
+    "addressId": 3,
+    "streetNo": "street1",
+    "buildingName": "NewBuiliding1",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "415416"
+  },
+  "email": "customer1@gmail.com",
+  "password": "password1111"
+}
+```
+---
+
+### DELETE ​/address​/{addressId} deleteAddressByIdHandler
+- Request URL - http://localhost:8888/address/6
+- Response Body
+```
+{
+  "addressId": 6,
+  "streetNo": "street4",
+  "buildingName": "Building1",
+  "city": "Mumbai",
+  "state": "Maharashtra",
+  "country": "India",
+  "pincode": "401401"
+}
+```
+---
+

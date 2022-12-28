@@ -45,7 +45,7 @@ public class AddressServiceImpl implements AddressService{
 	@Override
 	public Address addAddress(Address add, String key) throws AddressException, LoginException {
 		
-		Address	address= aDao.save(add);
+		
 		
 		CurrentCustomerSession currentSession = sDao.findByUuid(key);
 		
@@ -55,6 +55,9 @@ public class AddressServiceImpl implements AddressService{
 		{
 			throw new LoginException("Please do login!");
 		}
+		Address oldAddress = currentCustomer.getAddress();
+		aDao.deleteById(oldAddress.getAddressId());
+		Address	address= aDao.save(add);
 		
 		currentCustomer.setAddress(address);
 			 
@@ -68,8 +71,40 @@ public class AddressServiceImpl implements AddressService{
 	//===============================================================================
 	
 	
+//	@Override
+//	public Address updateAddress(Address address,String key) throws AddressException, LoginException {
+//		
+//		Optional<Address> opt= aDao.findById(address.getAddressId());
+//		
+//		if(opt.isPresent()) {
+//		
+//		CurrentCustomerSession currentSession = sDao.findByUuid(key);
+//		
+//		Customer currentCustomer = cDao.findById(currentSession.getCurrentUserId()).get();
+//		
+//		if(currentCustomer == null)
+//		{
+//			throw new LoginException("Please do login!");
+//		}
+//		
+//		Customer custFromAddress = cDao.findByAddress(address);
+//		if(custFromAddress.getCustomerId() != currentCustomer.getCustomerId())
+//		{
+//			throw new AddressException("This address not belong to you, Please check your address id or login key: addressid- "+address.getAddressId()+" "+"customer id: "+currentCustomer.getCustomerId());
+//		}
+//		
+//	
+//			
+//			Address updatedAddress= aDao.save(address);
+//			return updatedAddress;
+//			
+//		}else
+//			throw new AddressException("Invalid Address details..");
+//	
+//	}
+	
 	@Override
-	public Address updateAddress(Address address,String key) throws AddressException, LoginException {
+	public Customer updateAddress(Address address,String key) throws AddressException, LoginException {
 		
 		Optional<Address> opt= aDao.findById(address.getAddressId());
 		
@@ -93,7 +128,7 @@ public class AddressServiceImpl implements AddressService{
 	
 			
 			Address updatedAddress= aDao.save(address);
-			return updatedAddress;
+			return currentCustomer;
 			
 		}else
 			throw new AddressException("Invalid Address details..");
