@@ -9,10 +9,19 @@
 
 ```
 {
+  "address": {
+    "addressId": 0,
+    "buildingName": "Builiding1",
+    "city": "Pune",
+    "country": "India",
+    "pincode": "415415",
+    "state": "Maharashtra",
+    "streetNo": "street1"
+  },
   "customerId": 0,
   "email": "customer1@gmail.com",
-  "firstName": "customer1",
-  "lastName": "lastname1",
+  "firstName": "Customer1",
+  "lastName": "Lastname1",
   "mobileNumber": "7219497671",
   "password": "password1111"
 }
@@ -20,10 +29,19 @@
 - Response Body
 ```
 {
-  "customerId": 1,
-  "firstName": "customer1",
-  "lastName": "lastname1",
+  "customerId": 2,
+  "firstName": "Customer1",
+  "lastName": "Lastname1",
   "mobileNumber": "7219497671",
+  "address": {
+    "addressId": 1,
+    "streetNo": "street1",
+    "buildingName": "Builiding1",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "415415"
+  },
   "email": "customer1@gmail.com",
   "password": "password1111"
 }
@@ -35,10 +53,19 @@
 - Request Body
 ```
 {
-  "customerId": 1,
-  "firstName": "newCustomer1",
-  "lastName": "lastname1",
+  "customerId": 2,
+  "firstName": "Customer1",
+  "lastName": "Lastname1",
   "mobileNumber": "7219497671",
+  "address": {
+    "addressId": 1,
+    "streetNo": "street1",
+    "buildingName": "Builiding1",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "415415"
+  },
   "email": "customer1@gmail.com",
   "password": "password1111"
 }
@@ -46,40 +73,67 @@
 - Response Body
 ```
 {
-  "customerId": 1,
-  "firstName": "newCustomer1",
-  "lastName": "lastname1",
+  "customerId": 2,
+  "firstName": "NewCustomer1",
+  "lastName": "Lastname1",
   "mobileNumber": "7219497671",
+  "address": {
+    "addressId": 1,
+    "streetNo": "street1",
+    "buildingName": "Builiding1",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "415415"
+  },
   "email": "customer1@gmail.com",
   "password": "password1111"
 }
 ```
 ---
 ## GET ​/getcustomer​/{customerId} getCustomerById
-- Request URL - http://localhost:8888/getcustomer/1
+- Request URL - http://localhost:8888/getcustomer/2
 - Response body
 ```
 {
-  "customerId": 1,
-  "firstName": "newCustomer1",
-  "lastName": "lastname1",
+  "customerId": 2,
+  "firstName": "NewCustomer1",
+  "lastName": "Lastname1",
   "mobileNumber": "7219497671",
+  "address": {
+    "addressId": 1,
+    "streetNo": "street1",
+    "buildingName": "Builiding1",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "415415"
+  },
   "email": "customer1@gmail.com",
   "password": "password1111"
 }
 ```
 ---
 ## DELETE ​/customer​/{customerId} deleteCustomerByIdHandler
-- Request URL - http://localhost:8888/customer/1
+- Request URL - http://localhost:8888/customer/2
 - Response body
 
 
 ```
 {
-  "customerId": 1,
-  "firstName": "newCustomer1",
-  "lastName": "lastname1",
+  "customerId": 2,
+  "firstName": "NewCustomer1",
+  "lastName": "Lastname1",
   "mobileNumber": "7219497671",
+  "address": {
+    "addressId": 1,
+    "streetNo": "street1",
+    "buildingName": "Builiding1",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "country": "India",
+    "pincode": "415415"
+  },
   "email": "customer1@gmail.com",
   "password": "password1111"
 }

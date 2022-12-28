@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.yourshop.exception.AddressException;
 import com.yourshop.exception.LoginException;
@@ -46,7 +45,7 @@ public class AddressServiceImpl implements AddressService{
 	@Override
 	public Address addAddress(Address add, String key) throws AddressException, LoginException {
 		
-//		Address	address= aDao.save(add);
+		Address	address= aDao.save(add);
 		
 		CurrentCustomerSession currentSession = sDao.findByUuid(key);
 		
@@ -57,19 +56,12 @@ public class AddressServiceImpl implements AddressService{
 			throw new LoginException("Please do login!");
 		}
 		
-		add.setCustomer(currentCustomer);
-		Address address = aDao.save(add);
-		
-//		currentCustomer.setAddress(address);
-		currentCustomer.setAddress(add);
-		
+		currentCustomer.setAddress(address);
 			 
 	 	        
 	 	 cDao.save(currentCustomer);
-	 	
 	 	        
 	 	 return address;
-//	 	return add;
 	        
 	}
 	

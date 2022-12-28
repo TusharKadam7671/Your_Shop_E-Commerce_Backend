@@ -1,6 +1,5 @@
 package com.yourshop.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,6 +34,7 @@ public class Address {
 	
 	@Size(min = 3, max = 10, message = "Street no. should min of 3 and max of 10 Characters")
 	private String streetNo;
+	
 	private String buildingName;
 	
 	@NotBlank(message = "City should not be blank.")
@@ -49,9 +49,6 @@ public class Address {
 	@NotBlank(message = "Pincode cannot be blank.")
 	private String pincode;
 	
-	@JsonIgnore
-	@OneToOne(mappedBy = "address")
-	private Customer customer;
 	
 		
 }

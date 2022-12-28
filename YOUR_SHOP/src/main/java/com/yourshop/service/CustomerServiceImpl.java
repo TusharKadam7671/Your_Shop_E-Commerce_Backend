@@ -97,7 +97,8 @@ public class CustomerServiceImpl implements CustomerService {
 	public List<Customer> viewAllCustomers(String location) throws CustomerException 
 	{
 
-		List<Customer> customerList = custDao.getCustomerByCity(location);
+//		List<Customer> customerList = custDao.getCustomerByCity(location);
+		List<Customer> customerList = null;
 
 		if (customerList.isEmpty()) 
 		{
