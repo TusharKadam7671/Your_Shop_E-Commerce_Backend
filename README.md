@@ -483,3 +483,153 @@ Admin logged out
 }
 ```
 ---
+
+# Cart Module
+
+## POST ​/cart​/add addToCartHandler
+- **Request URL** - http://localhost:8888/cart/add?productId=9&quantity=3&key=vWFCRM
+- **Response Body**
+```
+{
+  "cartId": 11,
+  "customer": {
+    "customerId": 4,
+    "firstName": "Customer1",
+    "lastName": "Lastname1",
+    "mobileNumber": "7219497671",
+    "address": {
+      "addressId": 7,
+      "streetNo": "street4",
+      "buildingName": "Building1",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "pincode": "401401"
+    },
+    "email": "customer1@gmail.com",
+    "password": "password1111"
+  },
+  "products": [
+    {
+      "productId": 9,
+      "productName": "NEW moto e4 plus",
+      "price": 18000,
+      "color": "red",
+      "dimension": "80 x 170 mm",
+      "manufacturer": "motorola",
+      "specification": "5G",
+      "quantity": 3,
+      "id": 12
+    }
+  ]
+}
+```
+---
+
+## GET ​/cart​/products viewAllProductsInCartHandler
+- **Request URL** - http://localhost:8888/cart/products?key=vWFCRM
+- **Response Body**
+```
+[
+  {
+    "productId": 9,
+    "productName": "NEW moto e4 plus",
+    "price": 18000,
+    "color": "red",
+    "dimension": "80 x 170 mm",
+    "manufacturer": "motorola",
+    "specification": "5G",
+    "quantity": 3,
+    "id": 12
+  }
+]
+```
+---
+
+## PUT ​/cart​/products IncreaseProductQuantityHandler
+- **Request URL** - http://localhost:8888/cart/products?productId=9&quantity=2&key=vWFCRM
+- **Response Body**
+```
+[
+  {
+    "productId": 9,
+    "productName": "NEW moto e4 plus",
+    "price": 18000,
+    "color": "red",
+    "dimension": "80 x 170 mm",
+    "manufacturer": "motorola",
+    "specification": "5G",
+    "quantity": 5,
+    "id": 12
+  }
+]
+```
+---
+
+## DELETE ​/cart​/products​/remove removeProductFromCartHandler
+- **Request URL** - http://localhost:8888/cart/products/remove?productId=10&key=vWFCRM
+- **Response Body**
+```
+{
+  "cartId": 11,
+  "customer": {
+    "customerId": 4,
+    "firstName": "Customer1",
+    "lastName": "Lastname1",
+    "mobileNumber": "7219497671",
+    "address": {
+      "addressId": 7,
+      "streetNo": "street4",
+      "buildingName": "Building1",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "pincode": "401401"
+    },
+    "email": "customer1@gmail.com",
+    "password": "password1111"
+  },
+  "products": [
+    {
+      "productId": 9,
+      "productName": "NEW moto e4 plus",
+      "price": 18000,
+      "color": "red",
+      "dimension": "80 x 170 mm",
+      "manufacturer": "motorola",
+      "specification": "5G",
+      "quantity": 5,
+      "id": 12
+    }
+  ]
+}
+```
+---
+
+## DELETE ​/cart​/products removeAllProductsHandler
+- **Request URL** - http://localhost:8888/cart/products?key=vWFCRM
+- **Response Body**
+```
+{
+  "cartId": 11,
+  "customer": {
+    "customerId": 4,
+    "firstName": "Customer1",
+    "lastName": "Lastname1",
+    "mobileNumber": "7219497671",
+    "address": {
+      "addressId": 7,
+      "streetNo": "street4",
+      "buildingName": "Building1",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "India",
+      "pincode": "401401"
+    },
+    "email": "customer1@gmail.com",
+    "password": "password1111"
+  },
+  "products": []
+}
+```
+---
