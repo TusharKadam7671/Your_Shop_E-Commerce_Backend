@@ -44,7 +44,7 @@ public class CartController {
 	}
 	
 	@GetMapping("/products")
-	public ResponseEntity<List<ProductDto>> viewAllProductsHandler(@RequestParam String key) throws CartException, LoginException
+	public ResponseEntity<List<ProductDto>> viewAllProductsInCartHandler(@RequestParam String key) throws CartException, LoginException
 	{
 		List<ProductDto> list = ctService.viewAllProducts(key);
 		
@@ -52,7 +52,7 @@ public class CartController {
 	}
 	
 	@PutMapping("/products")
-	public ResponseEntity<List<ProductDto>> updateProductQuantityHandler(
+	public ResponseEntity<List<ProductDto>> IncreaseProductQuantityHandler(
 			@RequestParam Integer productId,
 			@RequestParam Integer quantity,
 			@RequestParam String key) throws CartException, LoginException, ProductException
@@ -63,13 +63,14 @@ public class CartController {
 	}
 	
 	@DeleteMapping("/products/remove")
-	public ResponseEntity<List<ProductDto>> removeProductFromCartHandler(
+	public ResponseEntity<Cart> removeProductFromCartHandler(
 			@RequestParam Integer productId,
 			@RequestParam String key) throws CartException, ProductException, LoginException
 	{
-		List<ProductDto> list = ctService.removeProductFromCart(productId, key);
+//		List<ProductDto> list = ctService.removeProductFromCart(productId, key);
+		Cart list = ctService.removeProductFromCart(productId, key);
 		
-		return new ResponseEntity<List<ProductDto>>(list, HttpStatus.OK);
+		return new ResponseEntity<Cart>(list, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/products")

@@ -19,6 +19,7 @@ import com.yourshop.model.Product;
 import com.yourshop.repository.CartRepo;
 import com.yourshop.repository.CustomerRepo;
 import com.yourshop.repository.CustomerSessionRepo;
+import com.yourshop.repository.ProductDtoRepo;
 import com.yourshop.repository.ProductRepo;
 
 
@@ -39,6 +40,8 @@ public class CartServiceImpl implements CartService{
 	private ProductRepo pDao;
 	
 
+	@Autowired
+	private ProductDtoRepo pdDao;
 	
 
 	
@@ -129,7 +132,8 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public List<ProductDto> removeProductFromCart(Integer productId, String key)
+//	public List<ProductDto> removeProductFromCart(Integer productId, String key)
+	public Cart removeProductFromCart(Integer productId, String key)
 			throws CartException, ProductException, LoginException {
 
 		CurrentCustomerSession currentSession = sDao.findByUuid(key);
@@ -138,7 +142,7 @@ public class CartServiceImpl implements CartService{
 		
 		if(currentCustomer == null)
 		{
-			throw new LoginException("Please login first to add product to the cart");
+			throw new LoginException("Please login first to remove product from the cart");
 		}
 
 		Product product;
@@ -168,7 +172,7 @@ public class CartServiceImpl implements CartService{
 					
 					
 					
-					pDao.deleteById(productdto.getId());
+					pdDao.deleteById(productdto.getId());
 					
 					flag = true;
 					
@@ -189,7 +193,7 @@ public class CartServiceImpl implements CartService{
 			cart.setProducts(list);
 			ctDao.save(cart);
 			
-			return list;
+			return cart;
 			
 		}
 		else
@@ -292,6 +296,18 @@ public class CartServiceImpl implements CartService{
 		}
 		else
 		{
+			List<ProductDto> list = cart.getProducts();
+			if(list.size() > 0)
+			{
+				for(ProductDto product : list)
+				{
+					Optional<Product> pOpt = pDao.findById(product.getProductId());
+					Product currentProd = pOpt.get();
+					currentProd.setQuantity(currentProd.getQuantity() + product.getQuantity());
+					pdDao.delete(product);
+					pDao.save(currentProd);
+				}
+			}
 			cart.setProducts(new ArrayList<>());
 			return ctDao.save(cart);
 		}
