@@ -326,3 +326,160 @@ Admin logged out
 ```
 ---
 
+# Product Module
+
+### POST ​/product​/addproduct addProduct
+- Request URL - http://localhost:8888/product/addproduct
+- Request Body
+```
+{
+  "category": {
+    "catId": 1,
+    "categoryName": "Electronics"
+  },
+  "color": "red",
+  "dimension": "80 x 170 mm",
+  "manufacturer": "motorola",
+  "price": 12000,
+  "productId": 1,
+  "productName": "moto e4 plus",
+  "quantity": 45,
+  "specification": "Not available"
+}
+
+```
+- Response Body
+```
+{
+  "productId": 8,
+  "productName": "moto e4 plus",
+  "price": 12000,
+  "color": "red",
+  "dimension": "80 x 170 mm",
+  "specification": "Not available",
+  "manufacturer": "motorola",
+  "quantity": 45,
+  "category": {
+    "catId": 1,
+    "categoryName": "Electronics"
+  }
+}
+```
+---
+
+### DELETE ​/product​/deleteproduct​/{productId} removeProduct
+- Request URL - http://localhost:8888/product/deleteproduct/8
+- Response Body
+```
+{
+  "productId": 8,
+  "productName": "moto e4 plus",
+  "price": 12000,
+  "color": "red",
+  "dimension": "80 x 170 mm",
+  "specification": "Not available",
+  "manufacturer": "motorola",
+  "quantity": 45,
+  "category": {
+    "catId": 1,
+    "categoryName": "Electronics"
+  }
+}
+```
+---
+
+### PUT ​/product​/product updateProductHandler
+- Request URL - 
+- Request Body
+```
+{
+  "productId": 9,
+  "productName": "NEW moto e4 plus",
+  "price": 18000,
+  "color": "red",
+  "dimension": "80 x 170 mm",
+  "specification": "5G",
+  "manufacturer": "motorola",
+  "quantity": 44,
+  "category": {
+    "catId": 1,
+    "categoryName": "Electronics"
+  }
+}
+```
+- Response Body
+```
+{
+  "productId": 9,
+  "productName": "NEW moto e4 plus",
+  "price": 18000,
+  "color": "red",
+  "dimension": "80 x 170 mm",
+  "specification": "5G",
+  "manufacturer": "motorola",
+  "quantity": 44,
+  "category": {
+    "catId": 1,
+    "categoryName": "Electronics"
+  }
+}
+```
+---
+
+### GET ​/product​/viewallproduct getAllProduct
+- Request URL - http://localhost:8888/product/viewallproduct
+- Response Body
+```
+[
+  {
+    "productId": 9,
+    "productName": "NEW moto e4 plus",
+    "price": 18000,
+    "color": "red",
+    "dimension": "80 x 170 mm",
+    "specification": "5G",
+    "manufacturer": "motorola",
+    "quantity": 44,
+    "category": {
+      "catId": 1,
+      "categoryName": "Electronics"
+    }
+  },
+  {
+    "productId": 10,
+    "productName": "moto e4 plus",
+    "price": 12000,
+    "color": "red",
+    "dimension": "80 x 170 mm",
+    "specification": "Not available",
+    "manufacturer": "motorola",
+    "quantity": 45,
+    "category": {
+      "catId": 1,
+      "categoryName": "Electronics"
+    }
+  }
+]
+```
+---
+
+### GET ​/product​/viewproductbyid​/{productId} viewProduct
+- Request URL - http://localhost:8888/product/viewproductbyid/9
+- Response Body
+```
+{
+  "productId": 9,
+  "productName": "NEW moto e4 plus",
+  "price": 18000,
+  "color": "red",
+  "dimension": "80 x 170 mm",
+  "specification": "5G",
+  "manufacturer": "motorola",
+  "quantity": 44,
+  "category": {
+    "catId": 1,
+    "categoryName": "Electronics"
+  }
+}
+```
+---
