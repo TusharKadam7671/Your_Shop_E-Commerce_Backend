@@ -5,8 +5,8 @@
 # Customer-Module
 
 ## POST ​/customer registerCustomer
-- Request URL - http://localhost:8888/customer
-
+- **Request URL** - http://localhost:8888/customer
+- **Request Body**
 ```
 {
   "address": {
@@ -26,7 +26,7 @@
   "password": "password1111"
 }
 ```
-- Response Body
+- **Response Body**
 ```
 {
   "customerId": 2,
@@ -48,9 +48,9 @@
 ```
 ---
 ## PUT ​/customer updateCustomerHandler
-- Request URL - http://localhost:8888/customer
+- **Request URL** - http://localhost:8888/customer
 
-- Request Body
+- **Request Body**
 ```
 {
   "customerId": 2,
@@ -70,7 +70,7 @@
   "password": "password1111"
 }
 ```
-- Response Body
+- **Response Body**
 ```
 {
   "customerId": 2,
@@ -92,8 +92,8 @@
 ```
 ---
 ## GET ​/getcustomer​/{customerId} getCustomerById
-- Request URL - http://localhost:8888/getcustomer/2
-- Response body
+- **Request URL** - http://localhost:8888/getcustomer/2
+- **Response body**
 ```
 {
   "customerId": 2,
@@ -115,8 +115,8 @@
 ```
 ---
 ## DELETE ​/customer​/{customerId} deleteCustomerByIdHandler
-- Request URL - http://localhost:8888/customer/2
-- Response body
+- **Request URL** - http://localhost:8888/customer/2
+- **Response body**
 
 
 ```
@@ -142,8 +142,8 @@
 # Customer-Login Module
 
 ## POST ​/customer​/login logInCustomer
-- Request URL - http://localhost:8888/customer/login
-- Request body
+- **Request URL** - http://localhost:8888/customer/login
+- **Request Body**
 ```
 {
   "email": "customer1@gmail.com",
@@ -151,14 +151,14 @@
   "password": "password1111"
 }
 ```
-- Response body
+- **Response Body**
 ```
 CurrentCustomerSession(currentUserId=1, uuid=lSrBHY, localDateTime=2022-12-27T22:12:24.307200100)
 ```
 ---
 ## POST ​/customer​/logout logoutCustomer
-- Request URL - http://localhost:8888/customer/logout?key=lSrBHY
-- Response body 
+- **Request URL** - http://localhost:8888/customer/logout?key=lSrBHY
+- **Response Body**
 ```
 logged out
 ```
@@ -167,15 +167,15 @@ logged out
 # Admin module 
 
 ## POST /admin​/createadmin saveAdmin
-- Request URL - http://localhost:8888/admin/createadmin
-- Request body
+- **Request URL** - http://localhost:8888/admin/createadmin
+- **Request Body**
 ```
 {
   "adminId": 0,
   "adminPass": "admin1111"
 }
 ```
-- Response body
+- **Response Body**
 ```
 {
   "adminId": 3,
@@ -186,24 +186,24 @@ logged out
 
 # Admin Login Module
 
-### POST ​/admin​/login logInAdmin
-- Request URL - http://localhost:8888/admin/login
-- Request body
+## POST ​/admin​/login logInAdmin
+- **Request URL** - http://localhost:8888/admin/login
+- **Request Body**
 ```
 {
   "adminId": 3,
   "password": "admin1111"
 }
 ```
-- Response body
+- **Response Body**
 ```
 CurrentAdminSession(currentAdminId=3, uuid=Ed6BPm, localDateTime=2022-12-27T22:25:59.030726300)
 ```
 ---
 
 ## POST ​/admin​/logout logoutAdmin
-- Request URL - http://localhost:8888/admin/logout?key=Ed6BPm
-- Response body
+- **Request URL** - http://localhost:8888/admin/logout?key=Ed6BPm
+- **Response Body**
 ```
 Admin logged out
 ```
@@ -211,9 +211,9 @@ Admin logged out
 
 # Address module
 
-### GET ​/address getAllAddressHandler
-- Request URL - http://localhost:8888/address
-- Response Body
+## GET ​/address getAllAddressHandler
+- **Request URL** - http://localhost:8888/address
+- **Response Body**
 ```
 [
   {
@@ -230,9 +230,9 @@ Admin logged out
 ---
 
 
-### POST ​/address registerAddress
- - Request URL - http://localhost:8888/address?loginKey=vWFCRM
- - Request Body 
+## POST ​/address registerAddress
+ - **Request URL** - http://localhost:8888/address?loginKey=vWFCRM
+ - **Request Body**
  ```
  {
   "addressId": 0,
@@ -244,7 +244,7 @@ Admin logged out
   "streetNo": "street4"
 }
  ```
- - Response Body
+ - **Response Body**
  ```
  {
   "addressId": 7,
@@ -258,9 +258,9 @@ Admin logged out
  ```
  ---
 
-### GET ​/getaddress​/{addressId} getAddressByIdHandler
-- Request URL - http://localhost:8888/getaddress/6
-- Response Body
+## GET ​/getaddress​/{addressId} getAddressByIdHandler
+- **Request URL** - http://localhost:8888/getaddress/6
+- **Response Body**
 ```
 {
   "addressId": 6,
@@ -273,9 +273,9 @@ Admin logged out
 }
 ```
  ---
-#### PUT ​/address updateAddressHandler
-- Request URL - http://localhost:8888/address?loginkey=vWFCRM
-- Request Body
+## PUT ​/address updateAddressHandler
+- **Request URL** - http://localhost:8888/address?loginkey=vWFCRM
+- **Request Body**
 ```
 
 {
@@ -288,7 +288,7 @@ Admin logged out
     "pincode": "415416"
 }
 ```
-- Response Body
+- **Response Body**
 ```
 {
   "customerId": 4,
@@ -310,9 +310,9 @@ Admin logged out
 ```
 ---
 
-### DELETE ​/address​/{addressId} deleteAddressByIdHandler
-- Request URL - http://localhost:8888/address/6
-- Response Body
+## DELETE ​/address​/{addressId} deleteAddressByIdHandler
+- **Request URL** - http://localhost:8888/address/6
+- **Response Body**
 ```
 {
   "addressId": 6,
@@ -328,9 +328,9 @@ Admin logged out
 
 # Product Module
 
-### POST ​/product​/addproduct addProduct
-- Request URL - http://localhost:8888/product/addproduct
-- Request Body
+## POST ​/product​/addproduct addProduct
+- **Request URL** - http://localhost:8888/product/addproduct
+- **Request Body**
 ```
 {
   "category": {
@@ -348,7 +348,7 @@ Admin logged out
 }
 
 ```
-- Response Body
+- **Response Body**
 ```
 {
   "productId": 8,
@@ -367,9 +367,9 @@ Admin logged out
 ```
 ---
 
-### DELETE ​/product​/deleteproduct​/{productId} removeProduct
-- Request URL - http://localhost:8888/product/deleteproduct/8
-- Response Body
+## DELETE ​/product​/deleteproduct​/{productId} removeProduct
+- **Request URL** - http://localhost:8888/product/deleteproduct/8
+- **Response Body**
 ```
 {
   "productId": 8,
@@ -388,9 +388,9 @@ Admin logged out
 ```
 ---
 
-### PUT ​/product​/product updateProductHandler
-- Request URL - 
-- Request Body
+## PUT ​/product​/product updateProductHandler
+- **Request URL** - http://localhost:8888/product/product
+- **Request Body**
 ```
 {
   "productId": 9,
@@ -407,7 +407,7 @@ Admin logged out
   }
 }
 ```
-- Response Body
+- **Response Body**
 ```
 {
   "productId": 9,
@@ -426,9 +426,9 @@ Admin logged out
 ```
 ---
 
-### GET ​/product​/viewallproduct getAllProduct
-- Request URL - http://localhost:8888/product/viewallproduct
-- Response Body
+## GET ​/product​/viewallproduct getAllProduct
+- **Request URL** - http://localhost:8888/product/viewallproduct
+- **Response Body**
 ```
 [
   {
@@ -463,9 +463,9 @@ Admin logged out
 ```
 ---
 
-### GET ​/product​/viewproductbyid​/{productId} viewProduct
-- Request URL - http://localhost:8888/product/viewproductbyid/9
-- Response Body
+## GET ​/product​/viewproductbyid​/{productId} viewProduct
+- **Request URL** - http://localhost:8888/product/viewproductbyid/9
+- **Response Body**
 ```
 {
   "productId": 9,
