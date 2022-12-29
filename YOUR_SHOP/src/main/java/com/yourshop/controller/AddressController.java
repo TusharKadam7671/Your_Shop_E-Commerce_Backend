@@ -71,6 +71,13 @@ public class AddressController {
 		return new ResponseEntity<Address>(delAddress,HttpStatus.OK);
 	}
 	
+//	@DeleteMapping("/address")
+//	public ResponseEntity<Address> deleteAddressForCustomerHandler(@RequestParam String loginkey) throws AddressException, LoginException{
+//		
+//		Address delAddress = aService.deleteAddress(loginkey);
+//		
+//		return new ResponseEntity<Address>(delAddress,HttpStatus.OK);
+//	}
 	
 	
 	@GetMapping("/address")

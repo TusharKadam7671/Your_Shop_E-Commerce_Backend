@@ -184,6 +184,30 @@ public class AddressServiceImpl implements AddressService{
 			throw new AddressException("Address doesn't Exist");
 	}
 
+//	@Override
+//	public Address deleteAddress(String key) throws AddressException,LoginException {
+//		// TODO Auto-generated method stub
+//		
+//		CurrentCustomerSession currentSession = sDao.findByUuid(key);
+//		
+//		Optional<Customer> custOpt = cDao.findById(currentSession.getCurrentUserId());
+//		
+//		if(custOpt.isPresent())
+//		{
+//			Customer currentUser = custOpt.get();
+//			Address add = aDao.findById(currentUser.getAddress().getAddressId()).get();
+//			
+//			aDao.deleteById(add.getAddressId());
+//			
+//			return add;
+//		}
+//		else
+//		{
+//			throw new LoginException("Please do login!");
+//		}
+//		
+//	}
+
 
 
 	

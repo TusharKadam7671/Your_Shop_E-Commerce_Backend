@@ -18,6 +18,8 @@ public interface AddressService {
 	
 	public Address deleteAddressId(Integer addressId) throws AddressException;
 	
+//	public Address deleteAddress(String key) throws AddressException,LoginException;
+	
 	public List<Address> getAllAddress() throws AddressException;
 	
 	public Address viewAddressById(Integer addressId)throws AddressException;
